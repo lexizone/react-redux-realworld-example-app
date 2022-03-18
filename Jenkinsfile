@@ -16,5 +16,12 @@ pipeline {
                 sh 'npm test'
             }
         }
+        stage('Deploy') {
+            steps {
+                sh 'npm run build'
+                sh 'npm start & sleep 1'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+            }
+        }
     }
 }
